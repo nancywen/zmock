@@ -2,6 +2,8 @@ package com.zf.dao.domain;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSONArray;
+
 public class MockInfoDao {
 	
 	private Long id;
@@ -12,9 +14,9 @@ public class MockInfoDao {
 	
 	private String requestParamTemplate;
 
-	private String[] resCondition;
+	private JSONArray resCondition;
 
-	private String[] resValue;
+	private JSONArray resValue;
 
 	private List<MockConditionInfo> responseCondition;
 
@@ -58,21 +60,23 @@ public class MockInfoDao {
 		this.responseCondition = responseCondition;
 	}
 
-	public String[] getResCondition() {
+	public JSONArray getResCondition() {
 		return resCondition;
 	}
 
-	public void setResCondition(String[] resCondition) {
+	public void setResCondition(JSONArray resCondition) {
 		this.resCondition = resCondition;
 	}
 
-	public String[] getResValue() {
+	public JSONArray getResValue() {
 		return resValue;
 	}
 
-	public void setResValue(String[] resValue) {
+	public void setResValue(JSONArray resValue) {
 		this.resValue = resValue;
 	}
+
+
 
 	public static class MockConditionInfo {
 		

@@ -5,7 +5,7 @@
   	<groupId>com.zf</groupId>
   	<artifactId>zmock</artifactId>
   	<version>1.0</version>
-  	<name>zmock</name>
+  	<name>zmock</name><!--  zmock-->
   	<description>mock项目</description>
   	<packaging>war</packaging>
   
