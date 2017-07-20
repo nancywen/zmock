@@ -43,6 +43,9 @@ public abstract class AbstractRequestService implements IRequestService{
 			ConvertExpressionService<T> convert = new ConvertExpressionService<T>(requestInfo, this);
 			String result = convert.convertExpression(condition);
 			if(Boolean.valueOf(result)){
+				
+				//这里改造 根据请求地址判断是否需要需要异步响应
+				
 				return mockConditionInfo.getResValue();
 			}
 		}

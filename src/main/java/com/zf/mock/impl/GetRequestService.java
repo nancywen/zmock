@@ -35,6 +35,10 @@ public class GetRequestService extends AbstractRequestService{
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> String getParamValueByKey(T requestInfo, String key) {
+		// 判断key 是否是/开头
+		if(key.startsWith("/")){
+			key = key.substring(1,key.length());
+		}
 		Map<String, String> reqInfo = (Map<String, String>) requestInfo;
 		if(reqInfo.containsKey(key)){
 			return reqInfo.get(key);
