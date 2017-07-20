@@ -14,7 +14,7 @@ import com.zf.zson.ZSON;
 import com.zf.zson.result.ZsonResult;
 
 @Service
-public class PostBodyRequestService extends AbstractRequestService{
+public class PostBodyRequestService extends AbstractRequestService {
 
 	@Override
 	public RequestType getRequestType() {
@@ -23,17 +23,21 @@ public class PostBodyRequestService extends AbstractRequestService{
 
 	@Override
 	public <T> boolean checkRequest(T requestInfo, String requestParamTemplate) {
-		if(".*".equals(requestParamTemplate)){
+		if (".*".equals(requestParamTemplate)) {
 			return true;
 		}
 		ZsonResult requestInfoResult = ZSON.parseJson(requestInfo.toString());
-		ZsonResult requestParamTemplateResult = ZSON.parseJson(requestParamTemplate);
+		ZsonResult requestParamTemplateResult = ZSON
+				.parseJson(requestParamTemplate);
 		List<String> reqPaths = requestInfoResult.getPaths();
 		Map<String, Class<?>> reqClassTypes = requestInfoResult.getClassTypes();
 		List<String> tempPaths = requestParamTemplateResult.getPaths();
-		Map<String, Class<?>> tempClassTypes = requestParamTemplateResult.getClassTypes();
+		Map<String, Class<?>> tempClassTypes = requestParamTemplateResult
+				.getClassTypes();
 		for (String tempPath : tempPaths) {
-			if(!reqPaths.contains(tempPath) || !tempClassTypes.get(tempPath).equals(reqClassTypes.get(tempPath))){
+			if (!reqPaths.contains(tempPath)
+					|| !tempClassTypes.get(tempPath).equals(
+							reqClassTypes.get(tempPath))) {
 				return false;
 			}
 		}
@@ -42,11 +46,16 @@ public class PostBodyRequestService extends AbstractRequestService{
 
 	@Override
 	public <T> String getParamValueByKey(T requestInfo, String key) {
-		if(".*".equals(key)){
+		if (".*".equals(key)) {
 			return requestInfo.toString();
 		}
 		ZsonResult reqResult = ZSON.parseJson(requestInfo.toString());
-		if(reqResult.getPaths().contains(key)){
+
+		// 判断key 是否是/ 开头
+		if (key.startsWith("/")) {
+			key = key.substring(1, key.length());
+		}
+		if (reqResult.getPaths().contains(key)) {
 			return reqResult.getValue(key).toString();
 		}
 		return key;
@@ -57,5 +66,5 @@ public class PostBodyRequestService extends AbstractRequestService{
 	public <T> T getRequestInfo(HttpServletRequest request) throws Exception {
 		return (T) CommonUtils.inputStreamToString(request.getInputStream());
 	}
-	
+
 }

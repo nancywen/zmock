@@ -65,4 +65,10 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
+	
+	<!-- 加载Spring配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
 </web-app>

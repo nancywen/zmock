@@ -2,6 +2,9 @@ package com.zf.service;
 
 import com.alibaba.fastjson.JSON;
 import com.zf.dao.domain.MockInfoDao;
+import com.zf.tool.Constants;
+import com.zf.utils.PropUtil;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -31,8 +34,14 @@ public class DataProviderService {
 
     public void loadMockData(){
 	    try{
-	        if(StringUtils.isBlank(DataSettingService.mockDataDir)){
+	    	
+	    	//从配置文件读取路径 --避免每次重启后都需要配置一遍
+	    	String dataDirInConfig = PropUtil.getString(Constants.MOCK_DATA_DIR);
+	    	
+	        if(StringUtils.isBlank(DataSettingService.mockDataDir) && StringUtils.isBlank(dataDirInConfig)){
 	            return;
+            }else if(StringUtils.isBlank(DataSettingService.mockDataDir) && StringUtils.isNotBlank(dataDirInConfig) ){
+            	DataSettingService.mockDataDir = dataDirInConfig;
             }
             MOCK_COLLECTIONS.clear();
             MOCK_DATAS.clear();
