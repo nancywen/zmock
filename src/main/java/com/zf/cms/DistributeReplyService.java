@@ -7,7 +7,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -26,6 +25,7 @@ import com.zf.tool.Constants;
 import com.zf.utils.FTPUtil;
 import com.zf.utils.MyHttpClient;
 import com.zf.utils.PropUtil;
+import com.zf.utils.StringUtils;
 
 @Service
 public class DistributeReplyService {
@@ -189,7 +189,7 @@ public class DistributeReplyService {
 			public void run() {
 				try {
 					String tvgwBackurl = PropUtil.getString(preffix + Constants.TVGW_BACKURL);
-					MyHttpClient.post(tvgwBackurl, JSON.toJSONString(outVo));
+					MyHttpClient.post(tvgwBackurl, StringUtils.obj2Json(outVo));
 					logger.info("drm - send ok");
 
 				} catch (Exception e) 
