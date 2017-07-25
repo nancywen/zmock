@@ -156,6 +156,17 @@ public class DistributeReplyService {
 		dst.setDstUrl(inputVo.FileURL + "/main.m3u8");
 		dst.setBandWidth(bandwidth);
 		outVo.DstInfoList.add(dst);
+		DstInfo dstInfoIptv = new DstInfo();
+		dstInfoIptv.setDstId(1);// 3 OTT&IPTV
+		dstInfoIptv.setDstUrl(inputVo.FileURL + "/main.m3u8");
+		dstInfoIptv.setBandWidth(bandwidth);
+		outVo.DstInfoList.add(dstInfoIptv);
+		
+		DstInfo dstInfoOtt = new DstInfo();
+		dstInfoOtt.setDstId(2);// 3 OTT&IPTV
+		dstInfoOtt.setDstUrl(inputVo.FileURL + "/main.m3u8");
+		dstInfoOtt.setBandWidth(bandwidth);
+		outVo.DstInfoList.add(dstInfoOtt);
 		boolean isFileUrlCorrected = true;
 		String fileUlr = inputVo.FileURL;
 
