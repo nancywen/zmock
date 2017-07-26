@@ -9,4 +9,5 @@ public class Constants {
 	public static final String TVGW_DRM_ADDR = "tvgw_drm";
 	public static final String TCGS_BACKURL = "_tcgs.backurl";
 	public static final String TVGW_BACKURL = "_tvgw.backurl";//切片与drm反馈地址一样
+	public static final String CDN_BACKURL = "cd.backurl";
 }

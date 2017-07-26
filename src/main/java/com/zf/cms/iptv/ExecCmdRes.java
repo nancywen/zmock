@@ -1,20 +1,21 @@
-package com.zf.cms.reply;
+
+package com.zf.cms.iptv;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-public class CSPResult {
+public class ExecCmdRes {
 	@XmlElement(name = "Result", required = true)
-	private int Result;
+	protected String Result;
 	@XmlElement(name = "ErrorDescription", required = true)
-	private String ErrorDescription;
+	protected String ErrorDescription;
 
 	@XmlTransient
-	public int getResult() {
+	public String getResult() {
 		return Result;
 	}
 
-	public void setResult(int result) {
+	public void setResult(String result) {
 		Result = result;
 	}
 
@@ -26,4 +27,5 @@ public class CSPResult {
 	public void setErrorDescription(String errorDescription) {
 		ErrorDescription = errorDescription;
 	}
+
 }

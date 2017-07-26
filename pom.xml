@@ -60,6 +60,10 @@
 				<configuration>
 					<source>${java-version}</source>
 					<target>${java-version}</target>
+					<compilerArguments>
+						<verbose />
+						<bootclasspath>${JAVA_HOME}/jre/lib/rt.jar;${JAVA_HOME}/jre/lib/jce.jar</bootclasspath>
+					</compilerArguments>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -216,13 +220,13 @@
 			<artifactId>commons-net</artifactId>
 			<version>3.3</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-jaxrs</artifactId>
