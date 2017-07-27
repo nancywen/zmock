@@ -13,13 +13,12 @@ import javax.jws.soap.SOAPBinding.ParameterStyle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.zf.cms.reply.CSPResult;
 import com.zf.tool.ErrorCode;
-import com.zf.utils.C2SoapUtil;
+import com.zf.utils.SoapUtil;
 
 /**
  * C2注入接口
@@ -81,7 +80,7 @@ public class C2InjectionWebService {
 				
 				try {				
 					//xmlURL, correlateID, copId, cmdResult, lspId
-					C2SoapUtil.sendMessage("",correlateId, cspId, ErrorCode.SUCCESS, lspId);
+					SoapUtil.sendC2Message("",correlateId, cspId, ErrorCode.SUCCESS, lspId);
 					log.info("c2 reply - send ok");
 				} catch (Exception e) {
 					log.error(e.getMessage(), e);

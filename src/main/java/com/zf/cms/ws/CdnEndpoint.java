@@ -22,6 +22,7 @@ import com.zf.cms.iptv.ContentDeployResult;
 import com.zf.tool.Constants;
 import com.zf.tool.ErrorCode;
 import com.zf.utils.PropUtil;
+import com.zf.utils.SoapUtil;
 import com.zf.utils.StringUtils;
 
 
@@ -51,8 +52,8 @@ public class CdnEndpoint {
 	 * @param cmdFileURL
 	 * @return
 	 */
-	@WebMethod(operationName = "ExecCmd")
-	@WebResult(name = "ExecCmdRes")
+	@WebMethod(operationName = "ContentDeployReq")
+	@WebResult(name = "CdExecCmdRes")
 	public CdExecCmdRes contentDeployReq(@WebParam(name = "CMSID") final String cspId,
 			@WebParam(name = "SOPID") final String lspId, @WebParam(name = "CorrelateID") final String correlateId,
 			@WebParam(name = "ContentMngXMLURL") String cmdFileURL){
@@ -74,14 +75,7 @@ public class CdnEndpoint {
 		CdnEndpoint.cdnES.schedule(new Runnable() {
 			public void run() {
 				try {
-					final ContentDeployResult resultNotifyReq = new ContentDeployResult();
-					resultNotifyReq.setCMSID(cspId);
-					resultNotifyReq.setSOPID(lspId);
-					resultNotifyReq.setCorrelateID(correlateId);
-					resultNotifyReq.setResultFileURL(null);
-					
-					String cdnBackurl = PropUtil.getString(Constants.CDN_BACKURL);
-					//WebServiceClient.customSendAndReceive(cdnBackurl, resultNotifyReq);
+					SoapUtil.sendCDMessage("", correlateId, cspId, ErrorCode.SUCCESS, lspId);
 				} catch (Exception e) {
 					logger.error(e.getMessage(), e);
 				}

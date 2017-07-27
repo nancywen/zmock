@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 public class CdExecCmdRes {
-	@XmlElement(name = "Result", required = true)
+	@XmlElement(name = "ResultCode", required = true)
 	protected String ResultCode;
 	@XmlElement(name = "ErrorDescription", required = true)
 	protected String ErrorDescription;

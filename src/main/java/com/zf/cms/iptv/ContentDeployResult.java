@@ -1,20 +1,22 @@
-//
-// 此文件是由 JavaTM Architecture for XML Binding (JAXB) 引用实现 v2.2.7 生成的
-// 请访问 <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// 在重新编译源模式时, 对此文件的所有修改都将丢失。
-// 生成时间: 2017.01.11 时间 12:06:07 PM CST 
-//
 
 package com.zf.cms.iptv;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 public class ContentDeployResult {
-
+	@XmlElement(name = "CMSID", required = true)
 	protected String CMSID;
+	@XmlElement(name = "SOPID", required = true)
 	protected String SOPID;
+	@XmlElement(name = "CorrelateID", required = true)
 	protected String CorrelateID;
+	@XmlElement(name = "ResultFileURL", required = true)
 	protected String ResultFileURL;
+	@XmlElement(name = "ResultCode", required = true)
+	protected String ResultCode;
 
+	@XmlTransient
 	public String getCMSID() {
 		return CMSID;
 	}
@@ -23,6 +25,7 @@ public class ContentDeployResult {
 		CMSID = cMSID;
 	}
 
+	@XmlTransient
 	public String getSOPID() {
 		return SOPID;
 	}
@@ -31,6 +34,7 @@ public class ContentDeployResult {
 		SOPID = sOPID;
 	}
 
+	@XmlTransient
 	public String getCorrelateID() {
 		return CorrelateID;
 	}
@@ -39,6 +43,7 @@ public class ContentDeployResult {
 		CorrelateID = correlateID;
 	}
 
+	@XmlTransient
 	public String getResultFileURL() {
 		return ResultFileURL;
 	}
@@ -46,5 +51,15 @@ public class ContentDeployResult {
 	public void setResultFileURL(String resultFileURL) {
 		ResultFileURL = resultFileURL;
 	}
+
+	@XmlTransient
+	public String getResultCode() {
+		return ResultCode;
+	}
+
+	public void setResultCode(String resultCode) {
+		ResultCode = resultCode;
+	}
+	
 
 }
