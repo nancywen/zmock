@@ -9,6 +9,7 @@ public class TvgwOutVo extends BaseOutVo{
 	public Integer RequestId;
 	public String ProviderId;
 	public String DownloadURL;
+	public String DownloadUrl;//tvgw v1版本
 	public List<DstInfo> DstInfoList;
 	
 	@Override

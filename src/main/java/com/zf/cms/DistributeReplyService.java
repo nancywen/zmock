@@ -124,10 +124,35 @@ public class DistributeReplyService {
 	public String processTvgwLive(final String preffix,TvgwInVo inputVo) {
 		logger.info("接口[tvgwLive] - inputVo = {}", inputVo);
 
-		final TvgwOutVo2 outVo2 = new TvgwOutVo2();
-		outVo2.DownloadUrl = inputVo.ChannelInfo.SrcUrlList.get(0) + "/tvgw";
-
-		return JSON.toJSONString(outVo2);
+		final TvgwOutVo outVo = new TvgwOutVo();
+		outVo.DownloadURL = inputVo.ChannelInfo.SrcUrlList.get(0) + "/tvgw";//tvgw v1版本
+		// tvgw v2接口支持多路输入 码率分离
+		outVo.DstInfoList = new ArrayList<DstInfo>();
+		DstInfo dst = new DstInfo();
+		List<String> bandwidth = new ArrayList<String>();
+		bandwidth.add("64000");
+		bandwidth.add("256000");
+		bandwidth.add("640000");
+		bandwidth.add("1024000");
+		dst.setDstId(3);// 3 OTT&IPTV
+		dst.setDstUrl(inputVo.FileURL + "/main3.m3u8");
+		dst.setBandWidth(bandwidth);
+		//outVo.DstInfoList.add(dst); 没有iptv&ott域了
+		DstInfo dstInfoIptv = new DstInfo();
+		dstInfoIptv.setDstId(1);// 3 OTT&IPTV
+		dstInfoIptv.setDstUrl(inputVo.FileURL + "/main1.m3u8");
+		dstInfoIptv.setBandWidth(bandwidth);
+		outVo.DstInfoList.add(dstInfoIptv);
+		
+		DstInfo dstInfoOtt = new DstInfo();
+		dstInfoOtt.setDstId(2);// 3 OTT&IPTV
+		dstInfoOtt.setDstUrl(inputVo.FileURL + "/main2.m3u8");
+		dstInfoOtt.setBandWidth(bandwidth);
+		outVo.DstInfoList.add(dstInfoOtt);
+		
+		String channelOut = StringUtils.obj2Json(outVo);
+		logger.info(">>>>>接口[tvgwLive] - outputVo = {}",channelOut);
+		return channelOut;
 	}
 
 	/**
@@ -155,16 +180,16 @@ public class DistributeReplyService {
 		dst.setDstId(3);// 3 OTT&IPTV
 		dst.setDstUrl(inputVo.FileURL + "/main.m3u8");
 		dst.setBandWidth(bandwidth);
-		outVo.DstInfoList.add(dst);
+		//outVo.DstInfoList.add(dst); 没有iptv&ott域了
 		DstInfo dstInfoIptv = new DstInfo();
 		dstInfoIptv.setDstId(1);// 3 OTT&IPTV
-		dstInfoIptv.setDstUrl(inputVo.FileURL + "/main.m3u8");
+		dstInfoIptv.setDstUrl(inputVo.FileURL + "/main1.m3u8");
 		dstInfoIptv.setBandWidth(bandwidth);
 		outVo.DstInfoList.add(dstInfoIptv);
 		
 		DstInfo dstInfoOtt = new DstInfo();
 		dstInfoOtt.setDstId(2);// 3 OTT&IPTV
-		dstInfoOtt.setDstUrl(inputVo.FileURL + "/main.m3u8");
+		dstInfoOtt.setDstUrl(inputVo.FileURL + "/main2.m3u8");
 		dstInfoOtt.setBandWidth(bandwidth);
 		outVo.DstInfoList.add(dstInfoOtt);
 		boolean isFileUrlCorrected = true;

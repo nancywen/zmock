@@ -20,7 +20,7 @@ public class TvgwInVo {
 	public Integer DestDRMType;
 	public ChannelInfoVo ChannelInfo;
 	
-	//vod drm
+	//vod drm--live drm
 	public List<DstInfo> DstInfoList;
 	public Integer ContentType;
 	public String FileDstURL;
